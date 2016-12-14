@@ -196,6 +196,8 @@ void draw_detections(image im, int num, float thresh, box *boxes, float **probs,
             }
 
             printf("%s: %.0f%%\n", names[class], prob*100);
+            if (strcmp(names[class], "tennis racket") != 0)
+              continue;
             int offset = class*123457 % classes;
             float red = get_color(2,offset,classes);
             float green = get_color(1,offset,classes);

@@ -5,17 +5,44 @@ This is a fork of Darknet, which can be found at the [Darknet project website](h
 ## Setup
 1. Install [OpenCV
    2.4](http://docs.opencv.org/2.4/doc/tutorials/introduction/linux_install/linux_install.html).
-2. (Optional) Install CUDA 7.5 or above on NVIDIA GPU machine.
+2. (Recommended) Install CUDA 7.5 or above on NVIDIA GPU machine.
 3. Clone the repository, checkout `racket` branch:
-  ```
-  git clone https://github.com/anujkhare/darknet-tennis
-  cd darknet-tennis
-  git checkout racket
-  ```
-4. Download the pretrained model.
-5. 
+```
+   git clone https://github.com/anujkhare/darknet-tennis
+   cd darknet-tennis
+   git checkout racket
+```
+4. Modify the Makefile, in particular, set the GPU, OpenCV flags, and the location of the CUDA
+   installation:
+```
+   GPU=1
+   OPENCV=1
+   COMMON+= -DGPU -I/<path-to-cuda>/include/
+   LDFLAGS+= -L/<path-to-cuda>/lib64 -lcuda -lcudart -lcublas -lcurand
+```
 
+5. Build repository:
+```
+   make -j8
+```
 
+6. Download the pretrained model (256 MB) in this folder.
+```
+   wget http://pjreddie.com/media/files/yolo.weights
+```
+
+You're all set!
+
+## Usage
+1. Run with single image:
+```
+   ./darknet detector test cfg/racket.data cfg/yolo-racket.cfg yolo.weights /path/to/image
+```
+
+2. Multiple images:
+```
+   ./darknet detector test cfg/racket.data cfg/yolo-racket.cfg yolo.weights
+```
 
 ## Dockerfile
 Alternatively, you can use this Dockerfile to build it more easily. However:

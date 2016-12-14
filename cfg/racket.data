@@ -1,0 +1,7 @@
+classes= 80
+train  = /mnt/Stuff/code/darknet/data/racket/train.txt
+valid  = /mnt/Stuff/code/darknet/data/racket/test.txt
+#valid = data/coco_val_5k.list
+names = data/racket.names
+backup = /mnt/Stuff/code/darknet/model/backup
+# eval=coco

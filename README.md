@@ -37,12 +37,17 @@ You're all set!
 ## Usage
 1. Run with single image:
   ```
-   ./darknet detector test cfg/racket.data cfg/yolo-racket.cfg yolo.weights /path/to/image
+   ./darknet detector test cfg/racket.data cfg/yolo-racket.cfg yolo.weights data/tennis1.jpg
   ```
 
 2. Multiple images:
   ```
    ./darknet detector test cfg/racket.data cfg/yolo-racket.cfg yolo.weights
+  ```
+
+3. Detection in Video (Needs GPU to run!):
+  ```
+   ./darknet detector demo cfg/racket.data cfg/yolo-racket.cfg yolo.weights /path/to/video
   ```
 
 ## Dockerfile (TODO)

@@ -78,7 +78,8 @@ CNNs.
 
 *I explored two different object detection models for this problem:*
 - Faster-RCNN: This proved to be very hard to get to build with all the
-  dependencies. I uploaded a Dockerfile for building it [here](). Overall,
+  dependencies. I uploaded a Dockerfile for building it
+  [here](https://github.com/anujkhare/docker-frcnn-tennis). Overall,
   given it's complexity to work with, I chose to look for alternatives.
 
 - You-Only-Look-Once ([YOLO](http://pjreddie.com/darknet/yolo)): This is a real-time object detection pipeline
@@ -103,10 +104,10 @@ days to complete.**
 ## Data
 For object detection, we need images + labels of the bounding boxes. From the
 well-known datasets, I found tennis rackets in:
-- [ImageNet](imagenet.stanford.edu/synset?wnid=n04039381): racket synset containing 458 labelled images of rackets
+- [ImageNet](http://imagenet.stanford.edu/synset?wnid=n04039381): racket synset containing 458 labelled images of rackets
   (including badminton, squash, and other rackets).
 
-- [MS COCO](mscoco.org/dataset/#download): tennis-racket class containing over 1000 annotated images.
+- [MS COCO](http://mscoco.org/dataset/#overview): tennis-racket class containing over 1000 annotated images.
   Downloaded using
   [this](https://gist.github.com/anujkhare/91413d1c6524bd917d37ece541578b5e) script.
 

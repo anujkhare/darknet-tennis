@@ -45,15 +45,12 @@ You're all set!
    ./darknet detector test cfg/racket.data cfg/yolo-racket.cfg yolo.weights
   ```
 
-## Dockerfile
+## Dockerfile (TODO)
 Alternatively, you can use this Dockerfile to build it more easily. However:
-- Real-time detection *won't work*.
 - This might download ~1GB of data.
 
-1. Install docker and nvidia-docker
 
-
-# Problem
+# Problem statement
 Train simple model (CNN or other) to recognize image of a tennis racquet.
 1. I would like you to Collect few images of tennis racquet from web. Use them to train a simple model, preferably a CNN.
 2. Would like to test model with a tennis racquet image from our camera.
@@ -62,14 +59,15 @@ Train simple model (CNN or other) to recognize image of a tennis racquet.
 
 # Analysis
 ## One-class SVM
+We could train one class SVM with only training images of tennis rackets, to
+learn the distribution of training rackets. For a new image, the SVM would
+accept images similar to the training images, and reject others.
 
 ## 2-class classification using CNN
-This problem can be formulated as a 2-class discrimatory problem (tennis-racket
-vs everything-else). A CNN can be trained on these images to perform the
-classification.
+This problem can be formulated as a 2-class discriminatory problem (tennis-racket
+vs everything-else), using a CNN.
 
-However, it is not well defined what the images the other class should contain, 
-
+However, it is not well defined what the images the other class should contain.
 
 ## Object detection using CNN
 A related problem is to detect a tennis racket in an image by drawing a
@@ -83,12 +81,12 @@ CNNs.
   dependencies. I uploaded a Dockerfile for building it [here](). Overall,
   given it's complexity to work with, I chose to look for alternatives.
 
-- You-Only-Look-Once (YOLO) (Darknet): This is a real-time object detection pipeline
+- You-Only-Look-Once ([YOLO](http://pjreddie.com/darknet/yolo)): This is a real-time object detection pipeline
   built using C and CUDA.
 
 ## Training YOLO for racket images
-I will upload instructions to setup the training data and train the model
-later.
+*I will upload instructions to setup the training data and train the model
+later.*
 
 I took a YOLO model pre-trained on MS-COCO (which already has a tennis-racket
 class), and just suppressed the output for all other classes. As a result, the
@@ -97,20 +95,22 @@ network only outputs the bounding boxes for tennis rackets.
 A more proper approach is to train a network starting from an extraction model
 (based on imagenet).
 
-*At the time of writing, the model is being trained on the ~1500 images of
-rackets for the past 1 day on my computer, and would probably take around 5
-days to complete.*
+**At the time of writing, the model is being trained on the ~1500 images of
+rackets for the past 1 day on my computer, and would probably take a few more
+days to complete.**
 
 
 ## Data
 For object detection, we need images + labels of the bounding boxes. From the
 well-known datasets, I found tennis rackets in:
-- [ImageNet](): racket synset containing 458 labelled images of rackets
+- [ImageNet](imagenet.stanford.edu/synset?wnid=n04039381): racket synset containing 458 labelled images of rackets
   (including badminton, squash, and other rackets).
 
-- [MS COCO](): tennis-racket class containing over 1000 annotated images.
-  Downloaded using [this]() script.
+- [MS COCO](mscoco.org/dataset/#download): tennis-racket class containing over 1000 annotated images.
+  Downloaded using
+  [this](https://gist.github.com/anujkhare/91413d1c6524bd917d37ece541578b5e) script.
 
-Small scripts [1]() were used to convert the annotations into the desired
+Small scripts
+[1](https://gist.github.com/anujkhare/28738577df405b29d211b88594357173) were used to convert the annotations into the desired
 format for this model.
 

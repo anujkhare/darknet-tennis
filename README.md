@@ -35,7 +35,8 @@ This is a fork of Darknet, which can be found at the [Darknet project website](h
 You're all set!
 
 ## Usage
-1. Run with single image:
+The images must be in **.jpg** or **.jpeg** format.
+1. Run with single image (replace `data/tennis1.jpg` with your image):
   ```
    ./darknet detector test cfg/racket.data cfg/yolo-racket.cfg yolo.weights data/tennis1.jpg
   ```
